@@ -1,0 +1,68 @@
+@import "variables";
+@import "mixins";
+
+*,
+*::after,
+*::before{
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+body {
+    box-sizing: border-box;
+    font-family: $main-font;
+    font-weight: $font-normal;
+    line-height: 1;
+    background-color: $bg-color;
+}
+
+@media (prefers-color-scheme: dark) {
+    .dark-scheme { background:  #333; color: white; }
+}
+  
+@media (prefers-color-scheme: light) {
+    .light-scheme { background: white; color:  #555; }
+}
+
+h1 {
+    font-size: 1.25em;
+
+    @include screen-small {
+        font-size: 1.5em;
+    }
+}
+
+h2 {
+    font-size: 1.25em;
+
+    @include screen-medium {
+        font-size: 1.5em;
+    }
+
+    @include screen-large {
+        font-size: 1.75em;
+    }
+
+    @include screen-mlarge {
+        font-size: 2em;
+    }
+}
+
+h3 {
+    font-size: 0.875em;
+
+    @include screen-small {
+        font-size: 1em;
+    }
+
+    @include screen-medium {
+        font-size: 1.25em;
+    }
+
+    @include screen-large {
+        font-size: 1.25em;
+    }
+}
+
+
