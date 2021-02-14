@@ -4,7 +4,6 @@
 }
 
 .job-search-box {
-    background-color: $white;
     border-radius: 6px;
     border: 1px solid $border-color;
 }
@@ -49,22 +48,6 @@
     }
 }
 
-.search-btn {
-    background: $purple;
-    border: 0;
-    border-radius: 4px;
-    color: $white;
-    cursor: pointer;
-    display: inline-block;
-    font-size: 1em;
-    padding: .5em 1.4em;
-    text-align: center;
-
-    &:hover {
-        background: $purple-light;
-    }
-}
-
 /* checkbox */
 .checkbox-container {
     display: block;
@@ -76,21 +59,21 @@
 
     .checkmark {
         position: absolute;
-        top: -2px;
+        top: -1px;
         left: 0;
-        height: 20px;
-        width: 20px;
+        height: 18px;
+        width: 18px;
         background-color: $gray-dark;
 
         &:after {
             content: "";
             position: absolute;
             display: none;
-            left: 8px;
-            top: 5px;
-            width: 5px;
+            left: 6px;
+            top: 4px;
+            width: 6px;
             height: 10px;
-            border: solid white;
+            border: 1px solid white;
             border-width: 0 3px 3px 0;
             transform: rotate(45deg);
         }
@@ -105,14 +88,108 @@
         cursor: pointer;
     }
 
-    input:checked ~ .checkmark {
+    input:checked ~ .checkmark, input:hover ~ .checkmark {
         background-color: $purple;
     }
 
-    input:checked ~ .checkmark:after {
+    input:checked ~ .checkmark:after, input:hover ~ .checkmark:after{
        display: block;
     }
-  }
+}
 
+/* Job list */
+.job-list {
+    &-box {
+        margin: 4.5em auto 2em;
+    }
 
+    &-wrap {
+        display: flex;
+        align-items: stretch;
+        justify-content: flex-start;
+        flex-flow: row wrap;
+        list-style-type: none;
+    }
 
+    &-item {
+        border-radius: 6px;
+        border: 1px solid $border-color;
+        width: calc((100% - 3rem) / 3);
+        // flex: 1 1 30%;
+        padding: 1.5em;
+        margin: 0 1.5em 3em 0;
+
+        &:nth-child(3n) {
+            margin-right: 0;
+        }
+
+        &-link {
+            display: flex;
+            flex-direction: column;
+            color: inherit;
+            height: 100%;
+        }
+    }
+
+    &-job {
+        &-img-wrap {
+            margin-top: -2.75em;
+
+            img {
+                padding: 4px;
+                object-fit: contain;
+                border: 1px solid $gray-darker;
+                border-radius: 12px;
+                background-color: $white;
+            }
+        }
+
+        &-info {
+            font-size: 1em;
+            color: $gray-darker;
+            margin: 1em 0;
+        }
+
+        &-location {
+            margin-top: 2em;
+            font-size: 0.875em;
+            color: $purple;
+        }
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    .bg-second {
+        background-color: $bg-color-white-drak;
+    }
+    .job-list-job-title {
+        color: $white;
+    }
+    .checkbox-container {
+        color: $white;
+    }
+    .search-input {
+        background-color: $bg-color-white-drak;
+    }
+    .border-second {
+        border-color: $bg-color-white-drak;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    .bg-second {
+        background-color: $bg-color-white;
+    }
+    .job-list-job-title {
+        color: black;
+    }
+    .checkbox-container {
+        color: black;
+    }
+    .search-input {
+        background-color: $bg-color-white;
+    }
+    .border-second {
+        border-color: $border-color;
+    }
+}

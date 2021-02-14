@@ -14,15 +14,25 @@ body {
     font-family: $main-font;
     font-weight: $font-normal;
     line-height: 1;
-    background-color: $bg-color;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
 }
 
 @media (prefers-color-scheme: dark) {
     .dark-scheme { background:  #333; color: white; }
+    body {
+        background-color: $bg-color-dark;
+    }
 }
-  
+
 @media (prefers-color-scheme: light) {
     .light-scheme { background: white; color:  #555; }
+    body {
+        background-color: $bg-color;
+    }
 }
 
 h1 {
@@ -34,35 +44,61 @@ h1 {
 }
 
 h2 {
-    font-size: 1.25em;
-
-    @include screen-medium {
-        font-size: 1.5em;
-    }
-
-    @include screen-large {
-        font-size: 1.75em;
-    }
-
-    @include screen-mlarge {
-        font-size: 2em;
-    }
+    font-size: 1em;
 }
 
-h3 {
+.primary-btn {
+    background: $purple;
+    border: 0;
+    border-radius: 4px;
+    color: $white;
+    cursor: pointer;
+    display: inline-block;
     font-size: 0.875em;
+    font-weight: $font-bold;
+    padding: .6em 1.3em;
+    text-align: center;
 
-    @include screen-small {
-        font-size: 1em;
-    }
-
-    @include screen-medium {
-        font-size: 1.25em;
-    }
-
-    @include screen-large {
-        font-size: 1.25em;
+    &:hover {
+        background: $purple-light;
     }
 }
 
+.secondary-btn {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: $gray-dark;
+    color: $purple;
+    font-size: 0.875em;
+    font-weight: $font-bold;
+    padding: .6em 1.3em;
+    cursor: pointer;
 
+    &:hover {
+        background-color: $gray-light;
+    }
+}
+
+/* Loading Spinner */
+.loader {
+    border: 10px solid $gray-dark;
+    border-radius: 50%;
+    border-top: 10px solid $purple;
+    width: 100px;
+    display: block;
+    height: 100px;
+    margin: 4em auto;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+0% { -webkit-transform: rotate(0deg); }
+100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+0% { transform: rotate(0deg); }
+100% { transform: rotate(360deg); }
+}
