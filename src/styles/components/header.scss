@@ -1,6 +1,7 @@
 header {
     padding: 1.75em 1.75em 4.5em;
     background: $bg-gradient;
+    clip-path: inset(0 0 0 0 round 0 0 0 5em);
 
     h1 {
         color: $white;

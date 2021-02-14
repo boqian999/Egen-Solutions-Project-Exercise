@@ -81,7 +81,7 @@ export default {
             }
           })
           .catch(error => {
-            console.log(error);
+            console.log(error.message);
             this.error = 'Sorry, no result found.';
           })
       } else {

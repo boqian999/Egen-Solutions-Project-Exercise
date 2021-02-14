@@ -17,12 +17,14 @@
           <label for="location">
             <i class="fa fa-map-marker" aria-hidden="true"></i>
           </label>
-          <input class="search-input"
+          <gmap-autocomplete class="search-input"
                   id="location"
                   name="location"
-                  v-model="location"
+                  :value="location"
+                  @place_changed="setPlace"
                   maxlength="100"
                   placeholder="Filter by location...">
+          </gmap-autocomplete>
         </div>
         <div class="job-search-form__item flex-center space-between">
             <label class="checkbox-container">
@@ -82,7 +84,8 @@ export default {
     }
   },
   mounted () {
-    this.searchUser()
+    this.searchUser();
+    this.locateMylocation();
   },
   computed: {
     axiosParams () {
@@ -116,9 +119,40 @@ export default {
           this.loading = false;
         })
         .catch(error => {
-          console.log(error);
+          console.log(error.message);
           this.error = 'Sorry, no result found. Please check your input.';
           this.loading = false;
+        })
+    },
+    locateMylocation() {
+      if(navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(position => {
+          this.getAddressFrom(position.coords.latitude, position.coords.longitude);
+        },
+        error => {
+          console.log(error.message);
+        })
+      } else {
+        console.log("The browser does not support geolocation API");
+      }
+    },
+    setPlace(place) {
+      this.location = place.formatted_address;
+    },
+    getAddressFrom(lat, long) {
+      const googleApiURL = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' +
+                          lat + ',' + long + '&key=AIzaSyAqIwVp3r48kEanahmSl439x4cPXhOSJvA'
+      Vue.axios.get(googleApiURL)
+        .then(reponse => {
+          if (reponse.data.error_message) {
+            console.log(reponse.data.error_message);
+          } else {
+            this.location = reponse.data.results[0].formatted_address;
+            console.log(this.location);
+          }
+        })
+        .catch(error => {
+          console.log(error.message);
         })
     },
     getTimeAway (date) {
