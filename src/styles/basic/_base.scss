@@ -38,13 +38,17 @@ a {
 h1 {
     font-size: 1.25em;
 
-    @include screen-small {
+    @include screen-medium {
         font-size: 1.5em;
     }
 }
 
 h2 {
-    font-size: 1em;
+    font-size: 0.875em;
+
+    @include screen-medium {
+        font-size: 1.25em;
+    }
 }
 
 .primary-btn {
@@ -54,10 +58,15 @@ h2 {
     color: $white;
     cursor: pointer;
     display: inline-block;
-    font-size: 0.875em;
+    font-size: 0.75em;
     font-weight: $font-bold;
-    padding: .6em 1.3em;
+    padding: .6em 1.25em;
     text-align: center;
+
+    @include screen-medium {
+        font-size: 0.875em;
+        padding: .6em 1.3em;
+    }
 
     &:hover {
         background: $purple-light;
@@ -69,10 +78,16 @@ h2 {
     border-radius: 4px;
     background-color: $gray-dark;
     color: $purple;
-    font-size: 0.875em;
     font-weight: $font-bold;
-    padding: .6em 1.3em;
+    font-size: 0.75em;
+    padding: .6em 1.25em;
+    text-align: center;
     cursor: pointer;
+
+    @include screen-medium {
+        font-size: 0.875em;
+        padding: .6em 1.3em;
+    }
 
     &:hover {
         background-color: $gray-light;
@@ -84,21 +99,30 @@ h2 {
     border: 10px solid $gray-dark;
     border-radius: 50%;
     border-top: 10px solid $purple;
-    width: 100px;
     display: block;
-    height: 100px;
-    margin: 4em auto;
+    width: 60px;
+    height: 60px;
+    margin: 2.5em auto;
     -webkit-animation: spin 2s linear infinite;
     animation: spin 2s linear infinite;
-}
 
-/* Safari */
-@-webkit-keyframes spin {
-0% { -webkit-transform: rotate(0deg); }
-100% { -webkit-transform: rotate(360deg); }
+    @include screen-small {
+        margin: 3em auto;
+    }
+
+    @include screen-medium {
+        width: 80px;
+        height: 80px;
+        margin: 4em auto;
+    }
+
+    @include screen-large {
+        width: 100px;
+        height: 100px;
+    }
 }
 
 @keyframes spin {
-0% { transform: rotate(0deg); }
-100% { transform: rotate(360deg); }
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }

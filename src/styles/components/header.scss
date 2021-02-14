@@ -1,7 +1,19 @@
 header {
-    padding: 1.75em 1.75em 4.5em;
+    padding: 1.5em 1.25em 3em;
     background: $bg-gradient;
-    clip-path: inset(0 0 0 0 round 0 0 0 5em);
+
+    @include screen-small {
+        padding: 1.5em 1.5em 4.5em;
+    }
+
+    @include screen-large {
+        clip-path: inset(0 0 0 0 round 0 0 0 3em);
+        padding: 1.75em 1.75em 4.5em;
+    }
+
+    @include screen-xlarge {
+        clip-path: inset(0 0 0 0 round 0 0 0 5em);
+    }
 
     h1 {
         color: $white;

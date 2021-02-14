@@ -4,7 +4,7 @@
       <div class="job-search-form flex-center">
         <div class="job-search-form__item job-search-form__item--lg flex-center">
           <label for="description">
-            <i class="fa fa-search" aria-hidden="true"></i>
+            <i class="fa fa-search desktop-view" aria-hidden="true"></i>
           </label>
           <input class="search-input"
                   id="description"
@@ -12,8 +12,10 @@
                   v-model="description"
                   maxlength="100"
                   placeholder="Filter by title, companies, experties..">
+          <i class="fa fa-filter mobile-view job-search-form__filter-icon" aria-hidden="true" @click="showFilter = !showFilter"></i>
+          <button type="submit" class="mobile-view job-search-btn--mobile" @click.prevent="searchUser"><i class="fa fa-search" aria-hidden="true"></i></button>
         </div>
-        <div class="job-search-form__item flex-center">
+        <div class="job-search-form__item desktop-flex flex-center" :class="{showFlex : showFilter}">
           <label for="location">
             <i class="fa fa-map-marker" aria-hidden="true"></i>
           </label>
@@ -26,7 +28,7 @@
                   placeholder="Filter by location...">
           </gmap-autocomplete>
         </div>
-        <div class="job-search-form__item flex-center space-between">
+        <div class="job-search-form__item desktop-flex flex-center space-between" :class="{showFlex : showFilter}">
             <label class="checkbox-container">
               <span>Fulltime Job Only</span>
               <input type="checkbox" checked="checked" v-model="full_time">
@@ -80,7 +82,8 @@ export default {
       full_time: false,
       jobs: [],
       error: '',
-      loading: false
+      loading: false,
+      showFilter: false
     }
   },
   mounted () {

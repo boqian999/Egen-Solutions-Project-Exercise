@@ -2,6 +2,7 @@
 $screen-small-min: 500px;
 $screen-medium-min: 768px;
 $screen-large-min: 992px;
+$screen-xlarge-min: 1200px;
 
 @mixin screen-small {
     @media screen and (min-width: #{$screen-small-min}) {
@@ -17,6 +18,12 @@ $screen-large-min: 992px;
 
 @mixin screen-large {
     @media screen and (min-width: #{$screen-large-min}) {
+        @content;
+    }
+}
+
+@mixin screen-xlarge {
+    @media screen and (min-width: #{$screen-xlarge-min}) {
         @content;
     }
 }

@@ -4,7 +4,7 @@
       <div class="job-detail-company-profile flex-center border-second bg-second" v-cloak>
         <img class="job-detail-company-profile-img" :src="job.company_logo">
         <div class="job-detail-company-profile-info flex-center space-between">
-          <div>
+          <div class="job-detail-company-profile-wrap">
             <h2 class="job-detail-company-profile-name">{{job.company}}</h2>
             <p class="job-detial-company-profile-url" v-if="job.company_url">{{job.company_url}}</p>
           </div>

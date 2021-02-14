@@ -1,41 +1,96 @@
 .job-detail-container {
-    max-width: 56.25rem;
-    margin: -2.25em auto 0;
+    margin: -1.75em 1.25em 0;
+
+    @include screen-small {
+        margin: -2.25em 1.5em 0;
+    }
+
+    @include screen-large {
+        max-width: 56.25rem;
+        margin: -2.25em auto 0;
+    }
 }
 
 .job-detail-company-profile {
-    height: 6rem;
     border-radius: 4px;
     border: 1px solid $border-color;
     position: relative;
     z-index: 999;
 
-    &-img {
-        width: 6rem;
+    @include screen-small {
+        height: 4rem;
+    }
+
+    @include screen-large {
         height: 6rem;
+    }
+
+    &-img {
+        margin-left: 1em;
+        width: 3rem;
+        height: 3rem;
         padding: 1em;
         object-fit: contain;
-        border-right: 1px solid $border-color;
+        border: 1px solid $border-color;
+
+        @include screen-small {
+            width: 4rem;
+            height: 4rem;
+            margin-left: 0;
+        }
+
+        @include screen-large {
+            width: 6rem;
+            height: 6rem;
+        }
     }
 
     &-info {
         flex: 1;
-        padding: 1em 2em;
+        padding: 1em 1em;
         height: 100%;
+
+        @include screen-small {
+            padding: 1em 1.25em;
+        }
+
+        @include screen-medium {
+            padding: 1em 1.5em;
+        }
+
+        @include screen-large {
+            padding: 1em 2em;
+        }
     }
 
 }
 
+.job-detail-company-profile-wrap {
+    padding-right: 1em;
+}
+
 .job-detial-company-profile-url {
-    font-size: 0.875em;
+    font-size: 0.75em;
     color: $gray-darker;
     margin-top: 0.5em;
+
+    @include screen-small {
+        font-size: 0.875em;
+    }
 }
 
 .job-description-wrap {
     margin: 1.5em auto;
-    padding: 2rem;
+    padding: 1.25rem;
     border-radius: 4px;
+
+    @include screen-medium {
+        padding: 1.5rem;
+    }
+
+    @include screen-large {
+        padding: 2rem;
+    }
 }
 
 .job-description-summary {
@@ -60,11 +115,15 @@
     }
 
     p, li {
-        font-size: 0.875rem;
+        font-size: 0.75rem;
         color: $gray-darker;
         line-height: 1.25;
         text-align: justify;
         margin-bottom: 1em;
+
+        @include screen-small {
+            font-size: 0.875em;
+        }
     }
 
     p strong {
@@ -88,15 +147,32 @@
     margin-top: 2.5em;
 }
 
+#how-to-apply {
+    p {
+        font-size: 0.75em;
+
+        @include screen-small {
+            font-size: 0.875em;
+        }
+    }
+}
+
 @media (prefers-color-scheme: dark) {
     .job-detail-company-profile-name {
         color: $white;
+    }
+    .job-detail-company-profile-img {
+        border-color: $bg-color-white-drak;
     }
 }
 
 @media (prefers-color-scheme: light) {
     .job-detail-company-profile-name {
         color: black;
+    }
+
+    .job-detail-company-profile-img {
+        border-color: $border-color;
     }
 }
 

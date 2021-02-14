@@ -1,8 +1,20 @@
 .job-container {
-    max-width: 67.5rem;
-    margin: -2.25em auto 0;
+    margin: -1.5em 1.25em 0;
     position: relative;
     opacity: 999;
+
+    @include screen-small {
+        margin: -2.25em 1.5em 0;
+    }
+
+    @include screen-large {
+        max-width: 60rem;
+        margin: -2.25em auto 0;
+    }
+
+    @include screen-xlarge {
+        max-width: 67.5rem;
+    }
 }
 
 .job-search-box {
@@ -11,22 +23,49 @@
 }
 
 .job-search-form {
-    flex-flow: row nowrap;
-    font-size: 1rem;
+    font-size: 0.875rem;
+    flex-direction: column;
+
+    @include screen-medium {
+        flex-flow: row nowrap;
+        flex-direction: row;
+    }
+
+    @include screen-large {
+        font-size: 1rem;
+    }
 
     &__item {
         flex: 3;
         width: 100%;
-        padding: 1.25em 1.5em;
-        border-right: 2px solid $border-color;
+        padding: 1em;
+        border-bottom: 1px solid $border-color;
+
+        @include screen-medium {
+            border-right: 2px solid $border-color;
+            border-bottom: none
+        }
+
+        @include screen-large {
+            padding: 1.25em 1.5em;
+        }
 
         &:last-child {
-            border-right: none;
+            border: none;
         }
 
         &--lg {
-            flex: 3.5;
+            flex: 3;
+
+            @include screen-large {
+                flex: 3.5;
+            }
         }
+    }
+
+    &__filter-icon {
+        width: 25px;
+        cursor: pointer;
     }
 
     /* override chrome autofill background color */
@@ -47,6 +86,26 @@
         margin-right: 0.4em;
         font-size: 1.25em;
         color: $purple;
+    }
+}
+
+.job-search-btn--mobile {
+    background-color: $purple;
+    border-color: $purple;
+    color: $white;
+    cursor: pointer;
+    width: 24px;
+    height: 22px;
+    position: relative;
+
+    .fa {
+        color: $white;
+        margin: 0 auto;
+        font-size: 0.875em;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
     }
 }
 
@@ -102,7 +161,11 @@
 /* Job list */
 .job-list {
     &-box {
-        margin: 4.5em auto 2em;
+        margin: 3em auto 2em;
+
+        @include screen-large {
+            margin: 4.5em auto 2em;
+        }
     }
 
     &-wrap {
@@ -116,13 +179,41 @@
     &-item {
         border-radius: 6px;
         border: 1px solid $border-color;
-        width: calc((100% - 3rem) / 3);
-        // flex: 1 1 30%;
-        padding: 1.5em;
-        margin: 0 1.5em 3em 0;
+        width: 100%;
+        padding: 1em;
+        margin: 0 0 2.5em 0;
+        font-size: 0.875rem;
+
+        @include screen-medium {
+            width: calc((100% - 1.25rem) / 2);
+            margin: 0 1.25rem 2.75em 0;
+        }
+
+        @include screen-medium {
+            width: calc((100% - 2.5rem) / 3);
+        }
+
+        @include screen-large {
+            width: calc((100% - 3rem) / 3);
+            padding: 1.5em;
+            margin: 0 1.5rem 3em 0;
+            font-size: 1rem;
+        }
+
+        &:nth-child(2n) {
+            @include screen-small {
+                margin-right: 0;
+            }
+
+            @include screen-medium {
+                margin-right: 1.25em;
+            }
+        }
 
         &:nth-child(3n) {
-            margin-right: 0;
+            @include screen-medium {
+                margin-right: 0;
+            }
         }
 
         &-link {
@@ -135,7 +226,11 @@
 
     &-job {
         &-img-wrap {
-            margin-top: -2.75em;
+            margin-top: -2.25em;
+
+            @include screen-large {
+                margin-top: -2.75em;
+            }
 
             img {
                 padding: 4px;

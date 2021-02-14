@@ -10,3 +10,31 @@
 .space-between {
     justify-content: space-between;
 }
+
+.desktop-view {
+    display: none;
+
+    @include screen-medium {
+        display: block;
+    }
+}
+
+.desktop-flex {
+    display: none;
+
+    @include screen-medium {
+        display: flex;
+    }
+}
+
+.mobile-view {
+    display: block;
+
+    @include screen-medium {
+        display: none;
+    }
+}
+
+.showFlex {
+    display: flex !important;
+}
