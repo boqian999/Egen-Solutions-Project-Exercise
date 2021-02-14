@@ -61,55 +61,55 @@ export default {
   },
   methods: {
     getJobDetials () {
-      this.error = ''
+      this.error = '';
       if (this.jobId !== '') {
         Vue.axios.get('https://jobs.github.com/positions/' + this.jobId + '.json')
           .then((response) => {
-            this.job = response.data
+            this.job = response.data;
             if (!this.job) {
-              this.error = 'Sorry, no result found.'
-              return
+              this.error = 'Sorry, no result found.';
+              return;
             }
             if (this.job.description !== '') {
-              this.addDescription()
+              this.addDescription();
             }
             if (this.job.how_to_apply !== '') {
-              this.addHowToApply()
+              this.addHowToApply();
             }
             if (this.job.title) {
-              document.title = this.job.title + '| job details'
+              document.title = this.job.title + '| job details';
             }
           })
           .catch(error => {
-            console.log(error)
-            this.error = 'Sorry, no result found.'
+            console.log(error);
+            this.error = 'Sorry, no result found.';
           })
       } else {
-        this.error = 'Sorry, can not get the job detail, please check your url.'
+        this.error = 'Sorry, can not get the job detail, please check your url.';
       }
     },
     getTimeAway (date) {
-      const now = new Date()
-      const past = new Date(date)
-      const gap = now - past
-      const msPerHour = 60 * 1000 * 60
-      const msPerDay = msPerHour * 24
+      const now = new Date();
+      const past = new Date(date);
+      const gap = now - past;
+      const msPerHour = 60 * 1000 * 60;
+      const msPerDay = msPerHour * 24;
 
       if (gap < msPerDay) {
-        const count = Math.round(gap / msPerHour)
-        return count === 1 ? (count + ' hour ago') : (count + ' hours ago')
+        const count = Math.round(gap / msPerHour);
+        return count === 1 ? (count + ' hour ago') : (count + ' hours ago');
       } else {
-        const count = Math.round(gap / msPerDay)
-        return count === 1 ? (count + ' day ago') : (count + ' days ago')
+        const count = Math.round(gap / msPerDay);
+        return count === 1 ? (count + ' day ago') : (count + ' days ago');
       }
     },
     addDescription () {
-      const parent = document.getElementById('job-description')
-      parent.innerHTML = this.job.description
+      const parent = document.getElementById('job-description');
+      parent.innerHTML = this.job.description;
     },
     addHowToApply () {
-      const parent = document.getElementById('how-to-apply')
-      parent.innerHTML = this.job.how_to_apply
+      const parent = document.getElementById('how-to-apply');
+      parent.innerHTML = this.job.how_to_apply;
     }
   }
 }

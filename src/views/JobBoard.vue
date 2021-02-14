@@ -86,54 +86,54 @@ export default {
   },
   computed: {
     axiosParams () {
-      const params = new URLSearchParams()
+      const params = new URLSearchParams();
       if (this.description !== '') {
-        params.append('description', this.description)
+        params.append('description', this.description);
       }
       if (this.location !== '') {
-        params.append('location', this.location)
+        params.append('location', this.location);
       }
       if (this.full_time) {
-        params.append('full_time', this.full_time)
+        params.append('full_time', this.full_time);
       }
-      return params
+      return params;
     }
   },
   methods: {
     searchUser () {
-      this.error = ''
-      this.loading = true
-      const requestUrl = 'https://jobs.github.com/positions.json'
+      this.error = '';
+      this.loading = true;
+      const requestUrl = 'https://jobs.github.com/positions.json';
       Vue.axios.get(requestUrl, {
         params: this.axiosParams
       })
         .then((response) => {
           if (response.data && response.data.length > 0) {
-            this.jobs = response.data
+            this.jobs = response.data;
           } else {
-            this.error = 'Sorry, no result found. Please check your input.'
+            this.error = 'Sorry, no result found. Please check your input.';
           }
-          this.loading = false
+          this.loading = false;
         })
         .catch(error => {
-          console.log(error)
-          this.error = 'Sorry, no result found. Please check your input.'
-          this.loading = false
+          console.log(error);
+          this.error = 'Sorry, no result found. Please check your input.';
+          this.loading = false;
         })
     },
     getTimeAway (date) {
-      const now = new Date()
-      const past = new Date(date)
-      const gap = now - past
-      const msPerHour = 60 * 1000 * 60
-      const msPerDay = msPerHour * 24
+      const now = new Date();
+      const past = new Date(date);
+      const gap = now - past;
+      const msPerHour = 60 * 1000 * 60;
+      const msPerDay = msPerHour * 24;
 
       if (gap < msPerDay) {
-        const count = Math.round(gap / msPerHour)
-        return count === 1 ? (count + ' hour ago') : (count + ' hours ago')
+        const count = Math.round(gap / msPerHour);
+        return count === 1 ? (count + ' hour ago') : (count + ' hours ago');
       } else {
-        const count = Math.round(gap / msPerDay)
-        return count === 1 ? (count + ' day ago') : (count + ' days ago')
+        const count = Math.round(gap / msPerDay);
+        return count === 1 ? (count + ' day ago') : (count + ' days ago');
       }
     }
   }
