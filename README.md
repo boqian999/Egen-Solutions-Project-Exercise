@@ -1,4 +1,4 @@
-# job-board-project
+# Egen Solutions Coding Challenge - Job Board Project
 
 ## Project setup
 ```

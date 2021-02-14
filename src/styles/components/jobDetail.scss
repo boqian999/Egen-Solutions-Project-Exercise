@@ -82,6 +82,10 @@
     }
 }
 
+.job-detail-container .errorMsg {
+    margin-top: 2.5em;
+}
+
 @media (prefers-color-scheme: dark) {
     .job-detail-company-profile-name {
         color: $white;

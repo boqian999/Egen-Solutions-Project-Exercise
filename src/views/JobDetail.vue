@@ -1,32 +1,35 @@
 <template>
   <section class="job-detail-container">
-    <div class="job-detail-company-profile flex-center border-second bg-second" v-cloak>
-      <img class="job-detail-company-profile-img" :src="job.company_logo">
-      <div class="job-detail-company-profile-info flex-center space-between">
-        <div>
-          <h2 class="job-detail-company-profile-name">{{job.company}}</h2>
-          <p class="job-detial-company-profile-url" v-if="job.company_url">{{job.company_url}}</p>
+    <template v-if="!error || error.length < 1">
+      <div class="job-detail-company-profile flex-center border-second bg-second" v-cloak>
+        <img class="job-detail-company-profile-img" :src="job.company_logo">
+        <div class="job-detail-company-profile-info flex-center space-between">
+          <div>
+            <h2 class="job-detail-company-profile-name">{{job.company}}</h2>
+            <p class="job-detial-company-profile-url" v-if="job.company_url">{{job.company_url}}</p>
+          </div>
+          <a :href="job.company_url" class="secondary-btn" target="_blank">Company Site</a>
         </div>
-        <a :href="job.company_url" class="secondary-btn" target="_blank">Company Site</a>
       </div>
-    </div>
 
-    <div class="job-description-wrap border-second bg-second" v-cloak>
-      <div class="job-description-summary flex-center space-between">
-        <div class="job-description-summary-left">
-            <p class="job-list-job-info">{{getTimeAway(job.created_at)}} · {{job.type}}</p>
-            <h2 class="job-list-job-title">{{job.title}}</h2>
-            <p class="job-list-job-location">{{job.location}}</p>
+      <div class="job-description-wrap border-second bg-second" v-cloak>
+        <div class="job-description-summary flex-center space-between">
+          <div class="job-description-summary-left">
+              <p class="job-list-job-info">{{getTimeAway(job.created_at)}} · {{job.type}}</p>
+              <h2 class="job-list-job-title">{{job.title}}</h2>
+              <p class="job-list-job-location">{{job.location}}</p>
+          </div>
+          <a :href="job.company_url" class="primary-btn" target="_blank">Apply Now</a>
         </div>
-        <a :href="job.company_url" class="primary-btn" target="_blank">Apply Now</a>
+        <div id="job-description"></div>
       </div>
-      <div id="job-description"></div>
-    </div>
 
-    <div class="job-description-wrap job-how-to-apply-wrap border-second" v-cloak>
-        <h2>How to Apply</h2>
-        <div id="how-to-apply"></div>
-    </div>
+      <div class="job-description-wrap job-how-to-apply-wrap border-second" v-cloak>
+          <h2>How to Apply</h2>
+          <div id="how-to-apply"></div>
+      </div>
+    </template>
+    <p v-else class="errorMsg">{{error}}</p>
   </section>
 </template>
 
@@ -44,12 +47,13 @@ import VueAxios from 'vue-axios'
 Vue.use(VueAxios, axios)
 
 export default {
+  title: 'Job Details',
   data () {
     return {
       jobId: this.$route.query.id ? this.$route.query.id : '',
       job: {},
       applyURL: '',
-      errors: ''
+      error: ''
     }
   },
   mounted () {
@@ -57,21 +61,31 @@ export default {
   },
   methods: {
     getJobDetials () {
+      this.error = ''
       if (this.jobId !== '') {
         Vue.axios.get('https://jobs.github.com/positions/' + this.jobId + '.json')
           .then((response) => {
             this.job = response.data
+            if (!this.job) {
+              this.error = 'Sorry, no result found.'
+              return
+            }
             if (this.job.description !== '') {
               this.addDescription()
             }
             if (this.job.how_to_apply !== '') {
               this.addHowToApply()
             }
+            if (this.job.title) {
+              document.title = this.job.title + '| job details'
+            }
           })
           .catch(error => {
             console.log(error)
-            this.errors = 'Can not get the data at this time, please check your search input or try again later.'
+            this.error = 'Sorry, no result found.'
           })
+      } else {
+        this.error = 'Sorry, can not get the job detail, please check your url.'
       }
     },
     getTimeAway (date) {

@@ -2,8 +2,6 @@
 $screen-small-min: 500px;
 $screen-medium-min: 768px;
 $screen-large-min: 992px;
-$screen-mlarge-min: 1280px;
-$screen-xlarge-min: 1440px;
 
 @mixin screen-small {
     @media screen and (min-width: #{$screen-small-min}) {
@@ -16,50 +14,9 @@ $screen-xlarge-min: 1440px;
       @content;
     }
 }
-  
+
 @mixin screen-large {
     @media screen and (min-width: #{$screen-large-min}) {
         @content;
     }
 }
-
-@mixin screen-mlarge {
-    @media screen and (min-width: #{$screen-mlarge-min}) {
-        @content;
-    }
-}
-
-@mixin screen-xlarge {
-    @media screen and (min-width: #{$screen-xlarge-min}) {
-        @content;
-    }
-} 
- 
-
-@mixin clearfix {
-    &::after {
-        content: '';
-        display: table;
-        clear: both;
-    }
-}
-
-// @mixin mainContainer {
-//     flex: 1;
-//     margin: 1.25rem;
-//     position: relative;
-//     overflow: hidden;
-
-//     @include screen-medium {
-//         margin: 1.5rem;
-//     }
-
-//     @include screen-large {
-//         margin: 2.5rem;
-//     }
-
-//     @include screen-xlarge {
-//         margin: 3.5rem auto;
-//         max-width: 80rem;
-//     } 
-// }

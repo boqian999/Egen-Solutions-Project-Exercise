@@ -158,6 +158,10 @@
     }
 }
 
+.errorMsg {
+    color: $gray-darker;
+}
+
 @media (prefers-color-scheme: dark) {
     .bg-second {
         background-color: $bg-color-white-drak;

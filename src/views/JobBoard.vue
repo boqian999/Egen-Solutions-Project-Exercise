@@ -30,16 +30,16 @@
               <input type="checkbox" checked="checked" v-model="full_time">
               <span class="checkmark"></span>
             </label>
-            <button class="primary-btn">Search</button>
+            <button type="submit" class="primary-btn" @click.prevent="searchUser">Search</button>
         </div>
       </div>
     </div>
 
     <div class="loader" v-if="loading" ></div>
     <div class="job-list-box" v-if="!loading" v-cloak>
-      <ul class="job-list-wrap">
+      <ul class="job-list-wrap" v-if="jobs.length > 0">
         <li class="job-list-item bg-second border-second" v-for="(job,index) in jobs" :key="index">
-          <a class="job-list-item-link" :href="'/job-detail/?id=' + job.id">
+          <a class="job-list-item-link" :href="'/job-detail/?id=' + job.id" target="_blank">
             <div class="flex-grow-1">
               <div class="job-list-job-img-wrap" v-if="job.company_logo">
                 <img width="40" height="40" :src="job.company_logo">
@@ -52,6 +52,7 @@
           </a>
         </li>
       </ul>
+      <p v-else>{{error}}</p>
     </div>
   </section>
 </template>
@@ -69,6 +70,7 @@ import VueAxios from 'vue-axios'
 Vue.use(VueAxios, axios)
 
 export default {
+  title: 'Devjobs | Job Board',
   data () {
     return {
       description: '',
@@ -82,19 +84,40 @@ export default {
   mounted () {
     this.searchUser()
   },
+  computed: {
+    axiosParams () {
+      const params = new URLSearchParams()
+      if (this.description !== '') {
+        params.append('description', this.description)
+      }
+      if (this.location !== '') {
+        params.append('location', this.location)
+      }
+      if (this.full_time) {
+        params.append('full_time', this.full_time)
+      }
+      return params
+    }
+  },
   methods: {
     searchUser () {
+      this.error = ''
       this.loading = true
-      Vue.axios.get('https://jobs.github.com/positions.json')
+      const requestUrl = 'https://jobs.github.com/positions.json'
+      Vue.axios.get(requestUrl, {
+        params: this.axiosParams
+      })
         .then((response) => {
           if (response.data && response.data.length > 0) {
             this.jobs = response.data
+          } else {
+            this.error = 'Sorry, no result found. Please check your input.'
           }
           this.loading = false
         })
         .catch(error => {
           console.log(error)
-          this.errors = 'Can not get the data at this time, please check your search input or try again later.'
+          this.error = 'Sorry, no result found. Please check your input.'
           this.loading = false
         })
     },
