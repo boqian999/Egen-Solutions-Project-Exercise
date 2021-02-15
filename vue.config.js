@@ -8,7 +8,7 @@ module.exports = {
     }
   },
   devServer: {
-    https: true
+    // https: true,
     // proxy: 'https://jobs.github.com/'
   }
 }
