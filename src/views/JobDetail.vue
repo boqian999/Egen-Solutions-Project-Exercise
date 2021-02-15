@@ -63,9 +63,7 @@ export default {
     getJobDetials () {
       this.error = '';
       if (this.jobId !== '') {
-        // solve github api CROS issue
-        const proxy = 'https://cors-anywhere.herokuapp.com/';
-        Vue.axios.get(proxy + 'https://jobs.github.com/positions/' + this.jobId + '.json')
+        Vue.axios.get('https://boqian-job-board-challenge.netlify.app/positions/' + this.jobId + '.json')
           .then((response) => {
             this.job = response.data;
             if (!this.job) {
@@ -84,7 +82,7 @@ export default {
           })
           .catch(error => {
             console.log(error.message);
-            this.error = 'Sorry, no result found.';
+            this.error = error.message;
           })
       } else {
         this.error = 'Sorry, can not get the job detail, please check your url.';

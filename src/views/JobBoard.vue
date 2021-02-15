@@ -73,6 +73,7 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 
 Vue.use(VueAxios, axios)
+Vue.axios.defaults.withCredentials = true;
 
 export default {
   title: 'Devjobs | Job Board',
@@ -111,16 +112,9 @@ export default {
     searchUser () {
       this.error = '';
       this.loading = true;
-      // solve github api CROS issue
-      const proxy = 'https://cors-anywhere.herokuapp.com/';
-      const requestUrl = proxy + 'https://jobs.github.com/positions.json';
+      const requestUrl = 'https://localhost:8080/positions.json';
       Vue.axios.get(requestUrl, {
-        params: this.axiosParams,
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
-          "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token"
-        }
+        params: this.axiosParams
       })
         .then((response) => {
           if (response.data && response.data.length > 0) {
