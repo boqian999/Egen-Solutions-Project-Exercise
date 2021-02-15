@@ -63,7 +63,9 @@ export default {
     getJobDetials () {
       this.error = '';
       if (this.jobId !== '') {
-        Vue.axios.get('https://jobs.github.com/positions/' + this.jobId + '.json')
+        // solve github api CROS issue
+        const proxy = 'https://cors-anywhere.herokuapp.com/';
+        Vue.axios.get(proxy + 'https://jobs.github.com/positions/' + this.jobId + '.json')
           .then((response) => {
             this.job = response.data;
             if (!this.job) {
