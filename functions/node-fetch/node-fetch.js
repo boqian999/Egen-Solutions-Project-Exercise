@@ -14,6 +14,7 @@ const handler = async function () {
       return { statusCode: response.status, body: response.statusText }
     }
     const data = await response.json()
+    console.log(data);
 
     return {
       statusCode: 200,

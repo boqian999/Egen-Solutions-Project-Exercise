@@ -112,7 +112,7 @@ export default {
     searchUser () {
       this.error = '';
       this.loading = true;
-      const requestUrl = 'https://jobs.github.com/positions.json';
+      const requestUrl = '/positions.json';
       Vue.axios.get(requestUrl, {
         params: this.axiosParams
       })
