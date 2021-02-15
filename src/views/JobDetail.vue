@@ -63,7 +63,7 @@ export default {
     getJobDetials () {
       this.error = '';
       if (this.jobId !== '') {
-        Vue.axios.get('https://boqian-job-board-challenge.netlify.app/positions/' + this.jobId + '.json')
+        Vue.axios.get('https://jobs.github.com/positions/' + this.jobId + '.json')
           .then((response) => {
             this.job = response.data;
             if (!this.job) {
@@ -82,7 +82,7 @@ export default {
           })
           .catch(error => {
             console.log(error.message);
-            this.error = error.message;
+            this.error = 'Sorry, no result found.';
           })
       } else {
         this.error = 'Sorry, can not get the job detail, please check your url.';
