@@ -111,9 +111,16 @@ export default {
     searchUser () {
       this.error = '';
       this.loading = true;
-      const requestUrl = 'https://jobs.github.com/positions.json';
+      // solve github api CROS issue
+      const proxy = 'https://cors-anywhere.herokuapp.com/';
+      const requestUrl = proxy + 'https://jobs.github.com/positions.json';
       Vue.axios.get(requestUrl, {
-        params: this.axiosParams
+        params: this.axiosParams,
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
+          "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token"
+        }
       })
         .then((response) => {
           if (response.data && response.data.length > 0) {
