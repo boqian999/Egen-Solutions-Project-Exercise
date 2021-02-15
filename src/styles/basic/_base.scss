@@ -14,6 +14,7 @@ body {
     font-family: $main-font;
     font-weight: $font-normal;
     line-height: 1;
+    background-color: #F5F6F8;
 }
 
 a {
@@ -96,29 +97,31 @@ h2 {
 
 /* Loading Spinner */
 .loader {
-    border: 10px solid $gray-dark;
+    border: 8px solid $gray-dark;
     border-radius: 50%;
-    border-top: 10px solid $purple;
+    border-top: 8px solid $purple;
     display: block;
-    width: 60px;
-    height: 60px;
+    width: 40px;
+    height: 40px;
     margin: 2.5em auto;
     -webkit-animation: spin 2s linear infinite;
     animation: spin 2s linear infinite;
 
     @include screen-small {
+        width: 50px;
+        height: 50px;
         margin: 3em auto;
     }
 
     @include screen-medium {
-        width: 80px;
-        height: 80px;
+        width: 60px;
+        height: 60px;
         margin: 4em auto;
     }
 
     @include screen-large {
-        width: 100px;
-        height: 100px;
+        width: 80px;
+        height: 80px;
     }
 }
 

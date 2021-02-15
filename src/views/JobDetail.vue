@@ -1,6 +1,6 @@
 <template>
-  <section class="job-detail-container">
-    <template v-if="!error || error.length < 1">
+  <section class="job-detail-container" id="theme-control">
+    <template v-if="!error || error.length < 1" v-cloak>
       <div class="job-detail-company-profile flex-center border-second bg-second" v-cloak>
         <img class="job-detail-company-profile-img" :src="job.company_logo">
         <div class="job-detail-company-profile-info flex-center space-between">
@@ -8,7 +8,7 @@
             <h2 class="job-detail-company-profile-name">{{job.company}}</h2>
             <p class="job-detial-company-profile-url" v-if="job.company_url">{{job.company_url}}</p>
           </div>
-          <a :href="job.company_url" class="secondary-btn" target="_blank">Company Site</a>
+          <a :href="job.company_url" class="secondary-btn" target="_blank" v-if="job.company_url">Company Site</a>
         </div>
       </div>
 
@@ -19,7 +19,7 @@
               <h2 class="job-list-job-title">{{job.title}}</h2>
               <p class="job-list-job-location">{{job.location}}</p>
           </div>
-          <a :href="job.company_url" class="primary-btn" target="_blank">Apply Now</a>
+          <a :href="job.url" class="primary-btn" target="_blank">Apply Now</a>
         </div>
         <div id="job-description"></div>
       </div>
@@ -29,7 +29,7 @@
           <div id="how-to-apply"></div>
       </div>
     </template>
-    <p v-else class="errorMsg">{{error}}</p>
+    <p v-else class="errorMsg" v-cloak>{{error}}</p>
   </section>
 </template>
 

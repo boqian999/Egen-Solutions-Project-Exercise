@@ -33,6 +33,24 @@ export default {
           this.isDarkMode = e.matches ? true : false;
       });
     }
+  },
+  watch: {
+    // change theme
+    isDarkMode (val) {
+      let el = document.getElementById('theme-control');
+      let body = document.getElementsByTagName("body")[0];
+      if(this.isDarkMode) {
+        body.style = 'background-color: #131822;'
+        if(!el.classList.contains('dark-theme')) {
+          el.classList.add('dark-theme');
+        }
+      } else {
+        body.style = 'background-color: #F5F6F8;'
+        if(el.classList.contains('dark-theme')) {
+          el.classList.remove('dark-theme');
+        }
+      }
+    }
   }
 }
 </script>

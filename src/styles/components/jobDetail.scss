@@ -157,22 +157,20 @@
     }
 }
 
-@media (prefers-color-scheme: dark) {
+.job-detail-company-profile-name {
+    color: black;
+}
+
+.job-detail-company-profile-img {
+    border-color: $border-color;
+}
+
+.dark-theme {
     .job-detail-company-profile-name {
         color: $white;
     }
     .job-detail-company-profile-img {
         border-color: $bg-color-white-drak;
-    }
-}
-
-@media (prefers-color-scheme: light) {
-    .job-detail-company-profile-name {
-        color: black;
-    }
-
-    .job-detail-company-profile-img {
-        border-color: $border-color;
     }
 }
 

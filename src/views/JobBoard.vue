@@ -1,5 +1,5 @@
 <template>
-  <section class="job-container">
+  <section class="job-container" id="theme-control">
     <div class="job-search-box bg-second border-second">
       <div class="job-search-form flex-center">
         <div class="job-search-form__item job-search-form__item--lg flex-center">
@@ -25,6 +25,7 @@
                   :value="location"
                   @place_changed="setPlace"
                   maxlength="100"
+                  @click.prevent="locateMylocation"
                   placeholder="Filter by location...">
           </gmap-autocomplete>
         </div>
@@ -56,7 +57,7 @@
           </a>
         </li>
       </ul>
-      <p v-else>{{error}}</p>
+      <p v-else class="errorMsg">{{error}}</p>
     </div>
   </section>
 </template>
@@ -83,12 +84,13 @@ export default {
       jobs: [],
       error: '',
       loading: false,
-      showFilter: false
+      showFilter: false,
+      firstInti: true
     }
   },
   mounted () {
     this.searchUser();
-    this.locateMylocation();
+    this.syncLocation();
   },
   computed: {
     axiosParams () {
@@ -117,26 +119,30 @@ export default {
           if (response.data && response.data.length > 0) {
             this.jobs = response.data;
           } else {
-            this.error = 'Sorry, no result found. Please check your input.';
+            this.error = 'No result found. Please update your search filter and try again.';
+            this.jobs = [];
           }
           this.loading = false;
         })
         .catch(error => {
           console.log(error.message);
-          this.error = 'Sorry, no result found. Please check your input.';
+          this.error = 'Can not get the result at this time. Please try again later.';
           this.loading = false;
         })
     },
     locateMylocation() {
-      if(navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(position => {
-          this.getAddressFrom(position.coords.latitude, position.coords.longitude);
-        },
-        error => {
-          console.log(error.message);
-        })
-      } else {
-        console.log("The browser does not support geolocation API");
+      if (this.firstInti) {
+        this.firstInti = false;
+        if(navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(position => {
+            this.getAddressFrom(position.coords.latitude, position.coords.longitude);
+          },
+          error => {
+            console.log(error.message);
+          })
+        } else {
+          console.log("The browser does not support geolocation API");
+        }
       }
     },
     setPlace(place) {
@@ -151,12 +157,20 @@ export default {
             console.log(reponse.data.error_message);
           } else {
             this.location = reponse.data.results[0].formatted_address;
-            console.log(this.location);
           }
         })
         .catch(error => {
           console.log(error.message);
         })
+    },
+    syncLocation () {
+      // fix location field not update issue
+      let el = document.getElementById("location");
+      el.addEventListener('change', (evt) => {
+        if (!el.value || el.value == '') {
+          this.location = '';
+        }
+      });
     },
     getTimeAway (date) {
       const now = new Date();

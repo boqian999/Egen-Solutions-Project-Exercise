@@ -259,38 +259,40 @@
     color: $gray-darker;
 }
 
-@media (prefers-color-scheme: dark) {
-    .bg-second {
-        background-color: $bg-color-white-drak;
-    }
-    .job-list-job-title {
-        color: $white;
-    }
-    .checkbox-container {
-        color: $white;
-    }
-    .search-input {
-        background-color: $bg-color-white-drak;
-    }
-    .border-second {
-        border-color: $bg-color-white-drak;
-    }
+.bg-second {
+    background-color: $bg-color-white;
+}
+.job-list-job-title {
+    color: black;
+}
+.checkbox-container {
+    color: black;
+}
+.search-input {
+    background-color: $bg-color-white;
+}
+.border-second {
+    border-color: $border-color;
 }
 
-@media (prefers-color-scheme: light) {
+.dark-theme {
     .bg-second {
-        background-color: $bg-color-white;
+        background-color: $bg-color-white-drak !important;
     }
     .job-list-job-title {
-        color: black;
+        color: $white !important;;
+    }
+    .job-search-form__item {
+        border-color: $bg-color-white-drak !important;
     }
     .checkbox-container {
-        color: black;
+        color: $white !important;;
     }
     .search-input {
-        background-color: $bg-color-white;
+        background-color: $bg-color-white-drak !important;;
+        color: $white !important;;
     }
     .border-second {
-        border-color: $border-color;
+        border-color: $bg-color-white-drak !important;;
     }
 }
