@@ -112,7 +112,7 @@ export default {
     searchUser () {
       this.error = '';
       this.loading = true;
-      const requestUrl = 'https://localhost:8080/positions.json';
+      const requestUrl = 'https://boqian-job-board-challenge.netlify.app/positions.json';
       Vue.axios.get(requestUrl, {
         params: this.axiosParams
       })
