@@ -5,9 +5,9 @@ I spent two and half days on this projects from scratch (I do not have experienc
 
 ## PRODCUTION SITE
 https://boqian-job-board-challenge.netlify.app/
-This page currently has CROS issue and I do not have enough time to debug Netlify CROS setting. Will update this doc once I fixed.
+This page currently has CORS issue and I do not have enough time to debug Netlify CORS setting. Will update this doc once I fixed.
 
-Right now you can get data from local by running npm run serve. I have setup cros-proxy (Have not figured out why  it does not work on Netfily).
+Right now you can get data from local by running npm run serve. I have setup cors-proxy (Have not figured out why  it does not work on Netfily).
 
 ## Project setup
 ```
