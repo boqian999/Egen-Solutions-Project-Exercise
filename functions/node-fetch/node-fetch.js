@@ -1,12 +1,12 @@
 const fetch = require('node-fetch')
 
-// const handler = () =>
-//   fetch("/.netlify/functions/node-fetch", { headers: { accept: "Accept: application/json" } })
-//     .then((x) => x.json())
-//     .then(({ msg }) => setMsg(msg))
+const handler = () =>
+  fetch("/.netlify/functions/node-fetch", { headers: { accept: "Accept: application/json" } })
+    .then((x) => x.json())
+    .then(({ msg }) => setMsg(msg))
 const handler = async function () {
   try {
-    const response = await fetch('https://jobs.github.com/', {
+    const response = await fetch('https://icanhazdadjoke.com', {
       headers: { Accept: 'application/json' },
     })
     if (!response.ok) {
@@ -14,7 +14,6 @@ const handler = async function () {
       return { statusCode: response.status, body: response.statusText }
     }
     const data = await response.json()
-    console.log(data);
 
     return {
       statusCode: 200,

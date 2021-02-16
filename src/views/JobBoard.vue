@@ -73,7 +73,6 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 
 Vue.use(VueAxios, axios)
-Vue.axios.defaults.withCredentials = true;
 
 export default {
   title: 'Devjobs | Job Board',
@@ -112,7 +111,14 @@ export default {
     searchUser () {
       this.error = '';
       this.loading = true;
-      const requestUrl = '/positions.json';
+      const proxy = "https://thingproxy.freeboard.io/fetch/"
+      const requestUrl = proxy + 'https://jobs.github.com/positions.json';
+
+
+const handler = () =>
+  fetch("/.netlify/functions/node-fetch", { headers: { accept: "Accept: application/json" } })
+    .then((x) => x.json())
+    .then(({ msg }) => setMsg(msg))
       Vue.axios.get(requestUrl, {
         params: this.axiosParams
       })
