@@ -113,12 +113,6 @@ export default {
       this.loading = true;
       const proxy = "https://thingproxy.freeboard.io/fetch/"
       const requestUrl = proxy + 'https://jobs.github.com/positions.json';
-
-
-const handler = () =>
-  fetch("/.netlify/functions/node-fetch", { headers: { accept: "Accept: application/json" } })
-    .then((x) => x.json())
-    .then(({ msg }) => setMsg(msg))
       Vue.axios.get(requestUrl, {
         params: this.axiosParams
       })

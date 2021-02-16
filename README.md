@@ -3,8 +3,11 @@
 ## Comment
 I spent two and half days on this projects from scratch (I do not have experience in building SPA with Vue (I have SPA experience with Angular), and most of features were done. I did not do the pagination / load more because the given API will only return 21 results at most, no matter you pass 'page' param with api or not, it will only return 21 results.
 
-## CROS
-The API server has CROS issue. I have used CROS proxy for the short-term solution. Since the power outage, I do not have enough time to debug Netlify CROS setting.
+## PRODCUTION SITE
+https://boqian-job-board-challenge.netlify.app/
+This page currently has CROS issue and I do not have enough time to debug Netlify CROS setting. Will update this doc once I fixed.
+
+Right now you can get data from local by running npm run serve. I have setup cros-proxy (Have not figured out why  it does not work on Netfily).
 
 ## Project setup
 ```
