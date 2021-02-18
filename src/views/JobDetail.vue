@@ -64,8 +64,10 @@ export default {
     getJobDetials () {
       this.error = '';
       if (this.jobId !== '') {
-        const proxy = "https://thingproxy.freeboard.io/fetch/"
-        Vue.axios.get(proxy+ 'https://jobs.github.com/positions/' + this.jobId + '.json')
+        const proxy = "https://thingproxy.freeboard.io/fetch/";
+        const timer=new Date().getTime().toString();
+        console.log(timer);
+        Vue.axios.get(proxy+ 'https://jobs.github.com/positions/' + this.jobId + '.json' + '&t='+timer)
           .then((response) => {
             this.job = response.data;
             if (!this.job) {

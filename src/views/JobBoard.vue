@@ -168,11 +168,13 @@ export default {
     syncLocation () {
       // fix location field not update issue
       let el = document.getElementById("location");
-      el.addEventListener('change', (evt) => {
-        if (!el.value || el.value == '') {
-          this.location = '';
-        }
-      });
+      if(el) {
+        el.addEventListener('change', (evt) => {
+          if (!el.value || el.value == '') {
+            this.location = '';
+          }
+        });
+      }
     },
     getTimeAway
   }
