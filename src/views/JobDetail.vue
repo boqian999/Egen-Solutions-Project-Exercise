@@ -65,9 +65,7 @@ export default {
       this.error = '';
       if (this.jobId !== '') {
         const proxy = "https://thingproxy.freeboard.io/fetch/";
-        const timer=new Date().getTime().toString();
-        console.log(timer);
-        Vue.axios.get(proxy+ 'https://jobs.github.com/positions/' + this.jobId + '.json' + '&t='+timer)
+        Vue.axios.get(proxy+ 'https://jobs.github.com/positions/' + this.jobId + '.json')
           .then((response) => {
             this.job = response.data;
             if (!this.job) {
@@ -91,6 +89,14 @@ export default {
       } else {
         this.error = 'Sorry, can not get the job detail, please check your url.';
       }
+    },
+    addDescription () {
+      const parent = document.getElementById('job-description');
+      parent.innerHTML = this.job.description;
+    },
+    addHowToApply () {
+      const parent = document.getElementById('how-to-apply');
+      parent.innerHTML = this.job.how_to_apply;
     },
     getTimeAway
   }
