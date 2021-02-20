@@ -10,7 +10,7 @@ Vue.mixin(titleMixin)
 
 Vue.use(VueGoogleMaps, {
   load: {
-    key: 'AIzaSyAqIwVp3r48kEanahmSl439x4cPXhOSJvA',
+    // key: 'AIzaSyAqIwVp3r48kEanahmSl439x4cPXhOSJvA',
     libraries: 'places'
   },
   installComponents: true

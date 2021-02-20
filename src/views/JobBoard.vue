@@ -151,8 +151,9 @@ export default {
       this.location = place.formatted_address;
     },
     getAddressFrom(lat, long) {
+      // has removed api key
       const googleApiURL = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' +
-                          lat + ',' + long + '&key=AIzaSyAqIwVp3r48kEanahmSl439x4cPXhOSJvA'
+                          lat + ',' + long
       Vue.axios.get(googleApiURL)
         .then(reponse => {
           if (reponse.data.error_message) {
